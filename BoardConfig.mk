@@ -52,8 +52,8 @@ TARGET_GLOBAL_CPPFLAGS += -fpic -fno-short-enums -pipe -funsafe-math-optimizatio
 TARGET_EXTRA_CFLAGS += $(call cc-option,  -marm -march=armv7-a)
 
 # Audio
-# BOARD_USES_GENERIC_AUDIO := false
-# BOARD_USES_ALSA_AUDIO := true
+BOARD_USES_GENERIC_AUDIO := false
+BOARD_USES_ALSA_AUDIO := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/nvidia/s8515
