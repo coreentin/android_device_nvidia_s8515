@@ -420,4 +420,3 @@ struct hw_module_t HAL_MODULE_INFO_SYM =
     .author = "NVIDIA",
     .methods = &lights_methods,
 };
-
