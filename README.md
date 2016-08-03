@@ -1,4 +1,5 @@
-# Device configuration for NVIDIA S8515 (Wiko WAX 4G, Blackphone 1 and explay 4game)
+# Device configuration for NVIDIA S8515 
+(Wiko WAX 4G, Blackphone 1 and explay 4game)
 
 ## Spec Sheet
 | Feature                 | Specification                     |
