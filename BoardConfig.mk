@@ -51,9 +51,12 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mcpu=cortex-a9 -mfpu=neon
 TARGET_GLOBAL_CPPFLAGS += -fpic -fno-short-enums -pipe -funsafe-math-optimizations -ffinite-math-only
 TARGET_EXTRA_CFLAGS += $(call cc-option,  -marm -march=armv7-a)
 
+#PowerHAL
+TARGET_POWERHAL_VARIANT := tegra
+
 # Audio
-# BOARD_USES_GENERIC_AUDIO := false
-# BOARD_USES_ALSA_AUDIO := true
+BOARD_USES_GENERIC_AUDIO := false
+BOARD_USES_ALSA_AUDIO := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/nvidia/s8515
@@ -61,10 +64,13 @@ TARGET_KERNEL_CONFIG := tegra_s8515_cyanogenmod_defconfig
 #BOARD_KERNEL_CMDLINE := "androidboot.selinux=permissive"
 
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_USERDATAIMAGE_PARTITION_SIZE  := 2145386496
+#BOARD_USERDATAIMAGE_PARTITION_SIZE  := 2598371328
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 2597674112
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 805306368
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+#BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 9085824
+
 BOARD_FLASH_BLOCK_SIZE := 4096
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -97,7 +103,7 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/nvidia/s8515/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/nvidia/s8515/bluetooth
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -111,3 +117,28 @@ WIFI_DRIVER_FW_PATH_AP           := "/data/misc/wifi/firmware/fw_bcmdhd_apsta.bi
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
 WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
+
+# Fix mkbootimg problem when compiling
+LOCAL_PACK_MODULE_RELOCATIONS := false
+
+# TWRP RECOVERY
+#COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+#TARGET_RECOVERY_DEVICE_DIRS += device/nvidia/s8515
+#TARGET_RECOVERY_FSTAB := device/nvidia/s8515/root/fstab.ceres
+
+#TW_BOARD_CUSTOM_GRAPHICS := ../../../device/nvidia/s8515/recovery/graphics.c
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/tegra-udc.0/gadget/lun0/file
+TW_BRIGHTNESS_PATH := /sys/devices/platform/pwm-backlight/backlight/pwm-backlight/brightness
+TW_MAX_BRIGHTESS := 255
+TW_THEME := portrait_hdpi
+
+# SELinux
+#BOARD_SEPOLICY_DIRS += device/nvidia/s8515/sepolicy
+
+# Vendor Init
+#TARGET_UNIFIED_DEVICE := true
+#TARGET_INIT_VENDOR_LIB := libinit_tn8
+#TARGET_LIBINIT_DEFINES_FILE := device/nvidia/shieldtablet/init/init_tn8.c
