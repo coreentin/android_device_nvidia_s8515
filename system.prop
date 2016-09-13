@@ -1,0 +1,36 @@
+persist.sys.usb.config=mtp,adb
+
+rild.libpath=/system/lib/libril-icera.so
+ro.opengles.version = 196609
+wifi.interface=wlan0
+ap.interface=wlan0
+persist.tegra.nvmmlite = 1
+persist.wlan.ti.calibrated = 0
+#ro.sf.override_null_lcd_density = 1
+ro.callvibrate.enable=true
+ro.com.google.clientidbase=android-nvidia
+
+#NFC
+debug.nfc.fw_download=false
+debug.nfc.se=false
+
+#support dynamic resolution change property
+ro.streaming.video.drs=true
+
+# use glcomposer as the default compositor
+persist.tegra.compositor=glcomposer
+
+#disable Miracast game mode support
+nvwfd.gamemode = 0
+
+#max resolution supported for Miracast is 720p, represented interms of macroblocks
+nvwfd.max_macroblocks = 3600
+
+# don't preload OpenGL in Zygote, the Tegra drivers do not like it
+ro.zygote.disable_gl_preload=true
+
+#Set audioflinger resampler quality to DYN_HIGH_QUALITY
+af.resampler.quality = 7
+
+#set default wallpaper
+ro.config.wallpaper=/lbh/media/images/default_wallpaper.jpg
